@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="com.example.pdfreader.fragments.PdfReaderHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfViewr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_page_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/bakcground_rounded"
+            android:padding="10dp"
+            android:text="0/200"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:alpha="0.5"
+            android:background="@drawable/bakcground_rounded"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/tv_page_num"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_prev_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> handler.onPrevPage()}"
+                android:padding="20dp"
+                android:src="@drawable/ic_fast_rewind_24px"
+                android:textSize="20sp" />
+
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> handler.onLike()}"
+                android:padding="20dp"
+                android:src="@drawable/ic_heart"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_next_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> handler.onNextPage()}"
+                android:padding="20dp"
+                android:src="@drawable/ic_fast_forward_24px"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

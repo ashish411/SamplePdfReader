@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_title_pdf">Open Pdf</string>
     <string name="btn_title_epub">Open Epub</string>
+    <string name="done">Done</string>
+    <string name="dialog_title">How do you like this story?</string>
 </resources>

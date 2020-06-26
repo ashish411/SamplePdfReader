@@ -19,9 +19,9 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven {
+       /* maven {
             url 'https://customers.pspdfkit.com/maven/'
-        }
+        }*/
     }
 }
 

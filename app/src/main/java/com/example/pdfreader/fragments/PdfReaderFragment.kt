@@ -1,5 +1,6 @@
 package com.example.pdfreader.fragments
 
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pdfreader.databinding.FragmentPdfReaderBinding
+import com.example.pdfreader.utils.Utils
+import com.github.barteksc.pdfviewer.listener.OnLongPressListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.listener.OnTapListener
 import kotlinx.android.synthetic.main.fragment_pdf_reader.*
+
 
 class PdfReaderFragment : Fragment(), PdfReaderHandler {
 
@@ -49,9 +53,16 @@ class PdfReaderFragment : Fragment(), PdfReaderHandler {
         binding.handler = this
         binding.pdfViewr.fromAsset("book.pdf")
             .swipeHorizontal(true)
+            .pageSnap(true)
+            .autoSpacing(true)
+            .pageFling(true)
             .onPageChange(object : OnPageChangeListener {
                 override fun onPageChanged(page: Int, pageCount: Int) {
                     currentPage = page
+                    Utils.playPageSwipeSound(requireContext())
+                    if (currentPage == 4) {
+                        CustomDialogFragment().show(childFragmentManager, null)
+                    }
                     binding.tvPageNum.text = "$page / $pageCount"
                 }
             })
@@ -60,6 +71,12 @@ class PdfReaderFragment : Fragment(), PdfReaderHandler {
                     binding.llOptions.visibility = View.VISIBLE
                     Handler().postDelayed({ ll_options.visibility = View.GONE }, 3000)
                     return true
+                }
+
+            })
+            .onLongPress(object : OnLongPressListener {
+                override fun onLongPress(e: MotionEvent?) {
+
                 }
 
             })

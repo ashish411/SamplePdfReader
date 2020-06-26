@@ -1,6 +1,5 @@
 package com.example.pdfreader.fragments
 
-import android.content.res.AssetManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pdfreader.databinding.FragmentPdfReaderBinding
 import com.example.pdfreader.utils.Utils
-import com.github.barteksc.pdfviewer.listener.OnLongPressListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.listener.OnTapListener
 import kotlinx.android.synthetic.main.fragment_pdf_reader.*
@@ -72,13 +70,6 @@ class PdfReaderFragment : Fragment(), PdfReaderHandler {
                     Handler().postDelayed({ ll_options.visibility = View.GONE }, 3000)
                     return true
                 }
-
-            })
-            .onLongPress(object : OnLongPressListener {
-                override fun onLongPress(e: MotionEvent?) {
-
-                }
-
             })
             .load()
     }

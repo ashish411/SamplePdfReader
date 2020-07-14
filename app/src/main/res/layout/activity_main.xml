@@ -1,71 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfViewr"
+    <data>
+
+        <variable
+            name="handler"
+            type="com.example.pdfreader.MainActivityHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_page_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0/200"
-        android:background="@drawable/bakcground_rounded"
-        android:layout_marginBottom="50dp"
-        android:textSize="20sp"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:alpha="0.5"
-        android:background="@drawable/bakcground_rounded"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_page_num">
-
-        <ImageView
-            android:id="@+id/iv_prev_page"
+        <Button
+            android:id="@+id/btn_pdf_reader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_fast_rewind_24px"
-            android:textSize="20sp"
-            android:padding="20dp"/>
+            android:onClick="@{() -> handler.openPdfReader()}"
+            android:text="@string/btn_title_pdf"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/iv_like"
+        <Button
+            android:id="@+id/btn_epub_reader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_heart"
-            android:textSize="20sp"
-            android:padding="20dp"/>
-
-        <ImageView
-            android:id="@+id/iv_next_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_fast_forward_24px"
-            android:textSize="20sp"
-            android:padding="20dp"/>
-
-    </LinearLayout>
+            android:onClick="@{() -> handler.openEpubReader()}"
+            android:text="@string/btn_title_epub"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_pdf_reader" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
